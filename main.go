@@ -21,7 +21,7 @@ func main() {
 		fmt.Println("Ha ocurrido un error : ", err)
 	} else {
 		for key, value := range result {
-			fmt.Printf("%s Valor es %v\n", key, value)
+			fmt.Printf("Para el Tag %s, el Valor es %v\n", key, value)
 		}
 	}
 }
