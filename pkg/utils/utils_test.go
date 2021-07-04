@@ -2,11 +2,17 @@ package utils
 
 import (
 	"errors"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+func TestMain(m *testing.M) {
+	exitVal := m.Run()
+
+	os.Exit(exitVal)
+}
 func TestValidateLength(t *testing.T) {
 	_, err := ValidateLength(0)
 	assert.Equal(t, errors.New("Debe ingresar cadena a checkear"), err)
@@ -22,7 +28,6 @@ func TestValidateValue(t *testing.T) {
 }
 
 func TestValidateType(t *testing.T) {
-
 	_, err := ValidateType("F00")
 	assert.Equal(t, errors.New("Valor inesperado para variable Tipo"), err)
 	valid, _ := ValidateType("A00")

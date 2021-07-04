@@ -3,6 +3,7 @@ package parser
 import (
 	//"test-fif-integraciones-tlv/pkg/parser"
 	"errors"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,6 +20,11 @@ const (
 	emptyValue   string = ""
 )
 
+func TestMain(m *testing.M) {
+	exitVal := m.Run()
+
+	os.Exit(exitVal)
+}
 func TestParseTLVEmptyValueFail(t *testing.T) {
 	byteString := []byte(emptyValue)
 	_, err := ParseTLV(byteString)
