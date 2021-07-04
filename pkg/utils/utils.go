@@ -1,4 +1,4 @@
-package constants
+package utils
 
 import (
 	"errors"
@@ -27,9 +27,6 @@ func ValidateValue(valor string, largo int) (bool, error) {
 	regex := re.MatchString(valor)
 	if regex == false {
 		return false, errors.New("Valor no permite caracteres especiales")
-	}
-	if len(strings.TrimSpace(valor)) < largo {
-		return false, errors.New("Valor no puede ser de largo menor al definido en el campo Largo")
 	}
 	return true, nil
 }

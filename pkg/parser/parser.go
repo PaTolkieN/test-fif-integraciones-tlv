@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -14,7 +15,7 @@ func ParseTLV(tlvByte []byte) (map[string]string, error) {
 	lenStr := len(strings.TrimSpace(tlvStr))
 	_, err := constants.ValidateLength(lenStr)
 	if err != nil {
-		return nil, err
+		return nil, errors.New("Hubo un problema al convertir el largo de String a Entero")
 	}
 	fmt.Println("Arreglo de bytes desde parámetros: ", tlvByte)
 	fmt.Println("Largo del string: ", lenStr)
@@ -27,6 +28,7 @@ func ParseTLV(tlvByte []byte) (map[string]string, error) {
 			leng, err := strconv.Atoi(tlvStr[:constants.SizeTLV])
 			fmt.Println("Largo TLV => ", leng)
 			if err != nil {
+				err = fmt.Errorf("Hubo un problema al convertir el string a entero")
 				return nil, err
 			}
 			val := tlvStr[constants.InitialPosition : constants.SizeTLV+leng]
